@@ -1,40 +1,55 @@
-import { useRecoilValue } from "recoil";
 import { Todo } from "../../model/todo";
-import { todoListState } from "../../recoil/state";
 
 type Props = {
-    todo: Todo;
-    onUpdateTodo: (updatedTodo: Todo) => void;
-    onDeleteTodo: (todo: Todo) => void;
+  todo: Todo;
+  onUpdateTodoChecked: (updatedTodo: Todo) => void;
+  onUpdateTodoText: (updatedTodo: Todo) => void;
+  onDeleteTodo: (todo: Todo) => void;
 };
 
-export default function TodoItem({ todo, onUpdateTodo, onDeleteTodo }: Props) {
-    const todoList = useRecoilValue(todoListState);
-    const { id, text, isComplete } = todo;
+export default function TodoItem({
+  todo,
+  onUpdateTodoChecked,
+  onUpdateTodoText,
+  onDeleteTodo,
+}: Props) {
+  const { text, isComplete } = todo;
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const updatedTodo = {
-            ...todo,
-            isComplete: todo.isComplete === true ? false : true,
-        };
-        onUpdateTodo(updatedTodo);
+  const handleCheckedChange = (): void => {
+    const updatedTodo = {
+      ...todo,
+      isComplete: todo.isComplete === true ? false : true,
     };
+    onUpdateTodoChecked(updatedTodo);
+  };
 
-    const handleClick = () => {
-        onDeleteTodo(todo);
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const newText = e.target.value;
+    const updatedTodo = {
+      ...todo,
+      text: newText,
     };
+    onUpdateTodoText(updatedTodo);
+  };
 
-    return (
-        <div>
-            <input
-                type="checkbox"
-                checked={isComplete}
-                onChange={handleChange}
-            />
-            <input type="text" />
-            <button data-id={id} onClick={handleClick}>
-                Delete
-            </button>
-        </div>
-    );
+  const handleClick = (): void => {
+    onDeleteTodo(todo);
+  };
+
+  return (
+    <div>
+      <input
+        type="checkbox"
+        checked={isComplete}
+        onChange={handleCheckedChange}
+      />
+      <input
+        type="text"
+        disabled={isComplete}
+        value={text}
+        onChange={handleTextChange}
+      />
+      <button onClick={handleClick}>Delete</button>
+    </div>
+  );
 }
