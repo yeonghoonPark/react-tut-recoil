@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const links = [
-  { path: '/', text: 'Home' },
-  { path: '/todolist', text: 'Todo' },
-  { path: '/test', text: 'Test' },
-  { path: '/temp', text: 'Temp' },
+  { path: "/", text: "Home" },
+  { path: "/todolist", text: "Todo" },
+  { path: "/test", text: "Test" },
+  { path: "/temp", text: "Temp" },
+  { path: "/names", text: "Names" },
 ];
 
 export default function Header() {

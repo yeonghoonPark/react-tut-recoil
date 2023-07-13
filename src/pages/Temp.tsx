@@ -1,5 +1,5 @@
-import { useRecoilState, useResetRecoilState } from 'recoil';
-import { tempCState, tempFState } from '../recoil/state';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { coinListState, tempCState, tempFState } from "../recoil/state";
 
 export default function Temp() {
   const [tempF, setTempF] = useRecoilState(tempFState);
@@ -14,6 +14,9 @@ export default function Temp() {
   const increseTempC = () => {
     setTempC((prev) => prev + 1);
   };
+
+  const coinList = useRecoilValue(coinListState);
+  console.log(coinList);
 
   return (
     <div>

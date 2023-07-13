@@ -18,9 +18,7 @@ export default function TodoListStats() {
     <section>
       <ul>
         {stats.map(({ text, value }) => (
-          <li key={text}>
-            {`${text}: ${value}`} {value === formattedPercentCompleted && "%"}
-          </li>
+          <li key={text}>{`${text}: ${value}`}</li>
         ))}
       </ul>
     </section>
