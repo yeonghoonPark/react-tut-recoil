@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useSetRecoilState } from "recoil";
-import { todoListState } from "../../recoil/state";
+import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { todoListState } from '../../recoil/state';
 
 export default function TodoItemCreator() {
   const setTodoList = useSetRecoilState(todoListState);
-  const [inputVal, setInputVal] = useState("");
+  const [inputVal, setInputVal] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal(e.target.value);
@@ -14,7 +14,7 @@ export default function TodoItemCreator() {
     e.preventDefault();
     const newTodo = { id: generateId(), text: inputVal, isComplete: false };
     setTodoList((prev) => [...prev, newTodo]);
-    setInputVal("");
+    setInputVal('');
   };
 
   return (
