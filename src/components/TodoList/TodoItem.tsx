@@ -37,7 +37,7 @@ export default function TodoItem({
   };
 
   return (
-    <div>
+    <li>
       <input
         type="checkbox"
         checked={isComplete}
@@ -50,6 +50,6 @@ export default function TodoItem({
         onChange={handleTextChange}
       />
       <button onClick={handleClick}>Delete</button>
-    </div>
+    </li>
   );
 }

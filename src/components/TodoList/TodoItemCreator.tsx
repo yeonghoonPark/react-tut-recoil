@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Todo } from "../../model/todo";
+import { useSetRecoilState } from "recoil";
+import { todoListState } from "../../recoil/state";
 
-type Props = {
-  onAddTodo: (newTodo: Todo) => void;
-};
-
-export default function TodoItemCreator({ onAddTodo: addItem }: Props) {
+export default function TodoItemCreator() {
+  const setTodoList = useSetRecoilState(todoListState);
   const [inputVal, setInputVal] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,15 +12,18 @@ export default function TodoItemCreator({ onAddTodo: addItem }: Props) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addItem({ id: generateId(), text: inputVal, isComplete: false });
+    const newTodo = { id: generateId(), text: inputVal, isComplete: false };
+    setTodoList((prev) => [...prev, newTodo]);
     setInputVal("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={inputVal} onChange={handleChange} />
-      <button>Add</button>
-    </form>
+    <section>
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={inputVal} onChange={handleChange} />
+        <button>Add</button>
+      </form>
+    </section>
   );
 }
 

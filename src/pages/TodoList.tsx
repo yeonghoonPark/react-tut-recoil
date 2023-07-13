@@ -1,32 +1,14 @@
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import TodoItem from "../components/TodoList/TodoItem";
+import { useRecoilValue } from "recoil";
 import TodoItemCreator from "../components/TodoList/TodoItemCreator";
+import TodoListFilters from "../components/TodoList/TodoListFilters";
+import TodoListItem from "../components/TodoList/TodoListItem";
+import TodoListStats from "../components/TodoList/TodoListStats";
 import { Todo } from "../model/todo";
 import { todoListState } from "../recoil/state";
 
 export default function TodoList() {
-  const [todoList, setTodoList] = useRecoilState<Todo[]>(todoListState);
-
-  const handleAddTodo = (newTodo: Todo) => {
-    setTodoList([...todoList, newTodo]);
-  };
-
-  const handleUpdateTodoChecked = (updatedTodo: Todo) => {
-    setTodoList(
-      todoList.map((t) => (updatedTodo.id === t.id ? updatedTodo : t))
-    );
-  };
-
-  const handleUpdateTodoText = (updatedTodo: Todo) => {
-    setTodoList(
-      todoList.map((t) => (updatedTodo.id === t.id ? updatedTodo : t))
-    );
-  };
-
-  const handleDeleteTodo = (todo: Todo) => {
-    setTodoList(todoList.filter((t) => t.id !== todo.id));
-  };
+  const todoList = useRecoilValue<Todo[]>(todoListState);
 
   useEffect(() => {
     console.log(todoList, "@todoListState");
@@ -34,20 +16,10 @@ export default function TodoList() {
 
   return (
     <>
-      {/* TodoListState */}
-      {/* TodoListFilters */}
-
-      <TodoItemCreator onAddTodo={handleAddTodo} />
-
-      {todoList.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onUpdateTodoChecked={handleUpdateTodoChecked}
-          onUpdateTodoText={handleUpdateTodoText}
-          onDeleteTodo={handleDeleteTodo}
-        />
-      ))}
+      <TodoListStats />
+      <TodoListFilters />
+      <TodoItemCreator />
+      <TodoListItem />
     </>
   );
 }
