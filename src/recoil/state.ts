@@ -1,4 +1,4 @@
-import { DefaultValue, atom, selector } from "recoil";
+import { DefaultValue, atom, selector, atomFamily } from "recoil";
 import { Todo, TodoFilter } from "../model/todo";
 
 // text
@@ -155,4 +155,10 @@ export const filteredNamesState = selector({
     const filteredNames = get(namesState).filter((name) => name !== "");
     return filteredNames;
   },
+});
+
+// atomFamily
+export const elementPositionStateFamily = atomFamily({
+  key: "elementPositionStateFamily",
+  default: [0, 0],
 });

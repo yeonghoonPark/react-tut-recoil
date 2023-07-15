@@ -6,6 +6,7 @@ const links = [
   { path: "/test", text: "Test" },
   { path: "/temp", text: "Temp" },
   { path: "/names", text: "Names" },
+  { path: "atomfamilypage", text: "AtomFimilyPage" },
 ];
 
 export default function Header() {

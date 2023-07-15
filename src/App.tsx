@@ -1,14 +1,15 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Home from './pages/Home';
-import Names from './pages/Names';
-import Root from './pages/Root';
-import Temp from './pages/Temp';
-import Test from './pages/Test';
-import TodoList from './pages/TodoList';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import AtomFamilyPage from "./pages/AtomFamilyPage";
+import Home from "./pages/Home";
+import Names from "./pages/Names";
+import Root from "./pages/Root";
+import Temp from "./pages/Temp";
+import Test from "./pages/Test";
+import TodoList from "./pages/TodoList";
 // 12345
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Root />,
     children: [
       {
@@ -16,20 +17,24 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/todolist',
+        path: "/todolist",
         element: <TodoList />,
       },
       {
-        path: '/test',
+        path: "/test",
         element: <Test />,
       },
       {
-        path: '/temp',
+        path: "/temp",
         element: <Temp />,
       },
       {
-        path: '/names',
+        path: "/names",
         element: <Names />,
+      },
+      {
+        path: "/atomfamilypage",
+        element: <AtomFamilyPage elementId={1} />,
       },
     ],
   },

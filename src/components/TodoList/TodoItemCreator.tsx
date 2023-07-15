@@ -1,27 +1,36 @@
-import React, { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { todoListState } from '../../recoil/state';
+import React, { useState } from "react";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
+import { todoListState } from "../../recoil/state";
 
 export default function TodoItemCreator() {
   const setTodoList = useSetRecoilState(todoListState);
-  const [inputVal, setInputVal] = useState('');
+  const [inputVal, setInputVal] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    e: React.FormEvent<HTMLFormElement | HTMLButtonElement>,
+  ) => {
     e.preventDefault();
     const newTodo = { id: generateId(), text: inputVal, isComplete: false };
     setTodoList((prev) => [...prev, newTodo]);
-    setInputVal('');
+    setInputVal("");
   };
+
+  const handleReset = useResetRecoilState(todoListState);
 
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={inputVal} onChange={handleChange} />
-        <button>Add</button>
+        <input type='text' value={inputVal} onChange={handleChange} />
+        <button type='submit' onSubmit={handleSubmit}>
+          Add
+        </button>
+        <button type='button' onClick={handleReset}>
+          Reset
+        </button>
       </form>
     </section>
   );
