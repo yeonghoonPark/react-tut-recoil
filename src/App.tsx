@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/atomfamilypage",
-        element: <AtomFamilyPage elementId={1} />,
+        element: <AtomFamilyPage />,
       },
     ],
   },

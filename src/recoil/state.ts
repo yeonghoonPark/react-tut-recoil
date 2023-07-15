@@ -1,4 +1,10 @@
-import { DefaultValue, atom, selector, atomFamily } from "recoil";
+import {
+  DefaultValue,
+  atom,
+  selector,
+  atomFamily,
+  selectorFamily,
+} from "recoil";
 import { Todo, TodoFilter } from "../model/todo";
 
 // text
@@ -158,7 +164,14 @@ export const filteredNamesState = selector({
 });
 
 // atomFamily
-export const elementPositionStateFamily = atomFamily({
-  key: "elementPositionStateFamily",
-  default: [0, 0],
+// 1번째 인자: default값의 타입
+// 2번째 인자: 매개변수로 들어갈 타입
+export const sampleState = atomFamily<string | number, string | number>({
+  key: "sampleState",
+  default: (params) => `sampleState의 params는 ${params} 입니다`,
+});
+
+export const isShowSentenceState = atomFamily<boolean, number>({
+  key: "isShowSentenceState",
+  default: false,
 });
