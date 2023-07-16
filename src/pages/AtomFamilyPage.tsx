@@ -1,8 +1,8 @@
 import React from "react";
 import { useResetRecoilState } from "recoil";
-import AFFirstChild from "../components/AtomFamily.tsx/AFFirstChild";
-import AFSecondChild from "../components/AtomFamily.tsx/AFSecondChild";
-import DailySentence from "../components/AtomFamily.tsx/DailySentence";
+import AFFirstChild from "../components/AtomFamily/AFFirstChild";
+import AFSecondChild from "../components/AtomFamily/AFSecondChild";
+import DailySentence from "../components/AtomFamily/DailySentence";
 import { sampleState } from "../recoil/state";
 
 const sentences = [

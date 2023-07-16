@@ -3,6 +3,7 @@ import AtomFamilyPage from "./pages/AtomFamilyPage";
 import Home from "./pages/Home";
 import Names from "./pages/Names";
 import Root from "./pages/Root";
+import SelectorFamilyPage from "./pages/SelectorFamilyPage";
 import Temp from "./pages/Temp";
 import Test from "./pages/Test";
 import TodoList from "./pages/TodoList";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/atomfamilypage",
         element: <AtomFamilyPage />,
+      },
+      {
+        path: "/selectorfamilypage",
+        element: <SelectorFamilyPage />,
       },
     ],
   },

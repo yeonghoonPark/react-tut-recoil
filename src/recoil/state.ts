@@ -175,3 +175,49 @@ export const isShowSentenceState = atomFamily<boolean, number>({
   key: "isShowSentenceState",
   default: false,
 });
+
+// selectorFamily
+export const KRWState = atom<number>({
+  key: "KRWState",
+  default: 0,
+});
+
+export const exchangeState = selectorFamily<number, string>({
+  key: "exchangeState",
+  get:
+    (params) =>
+    ({ get }): any => {
+      const won = get(KRWState);
+      switch (params) {
+        case "USD":
+          return Math.round(won * 0.0008);
+        case "YEN":
+          return Math.round(won * 0.11);
+        case "PHP":
+          return Math.round(won * 0.043);
+        default:
+          throw new Error(
+            "exchangeState의 paramsTyep을 확인해주세요, 정신차려 이 친구야",
+          );
+      }
+    },
+  set:
+    (params) =>
+    ({ set }, newValue): any => {
+      switch (params) {
+        case "USD":
+          const USDResult = Math.round(Number(Number(newValue) / 0.0008));
+          return set(KRWState, USDResult);
+        case "YEN":
+          const YENResult = Math.round(Number(Number(newValue) / 0.11));
+          return set(KRWState, YENResult);
+        case "PHP":
+          const PHPResult = Math.round(Number(Number(newValue) / 0.043));
+          return set(KRWState, PHPResult);
+        default:
+          throw new Error(
+            "exchangeState의 paramsTyep을 확인해주세요, 정신차려 이 친구야",
+          );
+      }
+    },
+});
