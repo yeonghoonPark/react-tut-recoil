@@ -24,18 +24,20 @@ export default function ExchangeForm({
   };
 
   return (
-    <form>
-      <label htmlFor='exchange'>
-        환전하실 금액({exchangeTextVal})을 입력해주세요
-      </label>
-      <br />
-      <input
-        type='number'
-        id='exchange'
-        value={exchangeAomuntVal}
-        onChange={handleExchangeChange}
-      />
+    <>
+      <form>
+        <label htmlFor='exchange'>
+          환전하실 금액({exchangeTextVal})을 입력해주세요
+        </label>
+        <br />
+        <input
+          type='number'
+          id='exchange'
+          value={exchangeAomuntVal}
+          onChange={handleExchangeChange}
+        />
+      </form>
       <button onClick={handleClick}>초기화</button>
-    </form>
+    </>
   );
 }
